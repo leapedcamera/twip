@@ -1,0 +1,17 @@
+# Control
+xDes: [0, 0, 0, 0, 0]
+Kp: 5
+Ki: 0.001
+Kd: 1
+
+# Dynamics
+l: 1
+mb: 1
+mw: 1
+Iw: .2
+Ib: .2
+r: .25
+
+# Animation
+width: 0.4
+height: 1.25
