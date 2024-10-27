@@ -14,7 +14,7 @@ initial_conditions = [0, 0, 0, 0.5]
 t = np.linspace(0, 30, 1000)
 
 # Input file
-fname = "settings.yml"
+fname = "../config/settings.yml"
 
 # Define control
 control = ZeroInput.ZeroInput(fname)
