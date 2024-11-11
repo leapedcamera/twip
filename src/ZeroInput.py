@@ -8,3 +8,6 @@ class ZeroInput(Control.Control):
 
     def getInput(self, x):
         return 0
+    
+    def getInput(self, x):
+        return 0

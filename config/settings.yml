@@ -1,17 +1,24 @@
 # Control
-xDes: [0, 0, 0, 0, 0]
-Kp: 5
-Ki: 0.001
+xDes: [0, 0, 3.141592653589793, 0]
+
+# PID
+Kp: 1000
+Ki: 1
 Kd: 1
 
+# Pole Placement
+poles: [-1, -2, -3, -4]
+
 # Dynamics
-l: 1
+l: 2
 mb: 1
-mw: 1
+mw: 5
 Iw: .2
-Ib: .2
+Ib: .5
 r: .25
+d: 1
 
 # Animation
+style: cart
 width: 0.4
 height: 1.25

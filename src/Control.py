@@ -14,4 +14,3 @@ class Control:
     
     def getInput(self):
         return self.uHistory
-

@@ -4,37 +4,54 @@ from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
 import ZeroInput
-import Dynamics
+import PolePlace
+import Pid
+
+import RollerDynamics
+import CartDynamicsSimple
+import CartDynamicsDamping
+
 import Animation
 
 # Set initial conditions
-initial_conditions = [0, 0, 0, 0.5]
+initial_conditions = [0.00, 0, np.pi + .01, 0]
 
 # Define time points
-t = np.linspace(0, 30, 1000)
+dt = .001
+sim_length = 10
+t = np.linspace(dt, sim_length, int(sim_length / dt) )
+n = np.size(t)
+t_prev = 0
 
 # Input file
-fname = "../config/settings.yml"
-
-# Define control
-control = ZeroInput.ZeroInput(fname)
+fname = "config/settings.yml"
 
 # Define dynamics
-dynamics = Dynamics.Dynamics(fname)
+dynamics = CartDynamicsDamping.CartDynamicsDamping(fname)
+dynamics.stabilityCheck()
 
-# Solve the equations
-solution = odeint(dynamics.integrate, initial_conditions, t, args=(control,))
+# Define control
+control = Pid.Pid(fname)
+[A,B] = dynamics.getSystem()
+#control.setGain(A,B)
+u = 0
 
+# Data holders
+x_hist = np.zeros([n,4])
+x = initial_conditions
+u_hist = np.zeros(n)
+
+# Run the simulation
+for i, t_final in enumerate(t):
+    # History comes first, but values are from previous step
+    u_hist[i] = u
+    x_hist[i,:] = x
+    t_steps = np.linspace(t_prev, t_final, 2)
+    x = odeint(dynamics.integrate, x_hist[i,:], t_steps, args=(u_hist[i],))[1,:]
+    u = control.getInput(x, t_final - t_prev)
+    t_prev = t_final
+    
 # Produce animation
-animation = Animation.Animation(fname, t, solution)
+animation = Animation.Animation(fname, t, x_hist, u_hist)
 animation.animate()
-
-# Plot the results
-plt.plot(t, solution[:, 0], label='phi')
-plt.plot(t, solution[:, 1], label='phi_dot')
-plt.plot(t, solution[:, 2], label='theta')
-plt.plot(t, solution[:, 3], label='theta_dot')
-plt.xlabel('Time')
-plt.ylabel('Values')
-plt.legend()
-plt.show()
+animation.plotStates()
