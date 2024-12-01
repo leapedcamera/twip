@@ -8,7 +8,7 @@ These packages can be installed or, after installing Anacoonda, the following li
 
 ## Settings
 The yaml file `settings.yml` is used to set the physical parameters of the pendulum, the dimensions of the animation, and any control parameters the algorithm requires.   
-The control algorithm of choice is modified by changing line 20 of sim.py to assign the `control` variable a different class.   
+The control algorithm of choice is modified by changing line 36 of sim.py to assign the `control` variable a different class.   
 
 ## Running 
 Run `sim.py` from the src folder. A plot showing the state space and an animation will appear
