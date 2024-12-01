@@ -49,4 +49,4 @@ class CartDynamicsDamping(Dynamics.Dynamics):
         B = np.zeros(4)
         B[1] = 1 / self.mw
         B[3] = 1 / self.l / self.mw
-        return [A, np.matrix(B).T]
+        return [A, np.array(np.matrix(B).T)]

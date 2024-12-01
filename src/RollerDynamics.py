@@ -1,9 +1,11 @@
 import numpy as np
 import yaml
 
+import Dynamics
+
 from numpy import sin, cos
 
-class Dynamics():
+class RollerDynamics(Dynamics.Dynamics):
 
     def __init__(self, paramFile):
         

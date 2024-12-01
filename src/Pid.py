@@ -1,6 +1,8 @@
 import Control
 import yaml
 
+
+# Simple PID controller
 class Pid(Control.Control):
     def __init__(self, paramFile):
         Control.Control.__init__(self, paramFile)
@@ -13,7 +15,7 @@ class Pid(Control.Control):
         self.sumError = 0
     
     def getInput(self, x, dt):
-        error = self.xDes[0]  - x[0]  
+        error = self.xDes[2]  - x[2]  
         deltaError = ( error - self.prevError ) / dt
         self.sumError = self.sumError + error * dt
         self.prevError = error

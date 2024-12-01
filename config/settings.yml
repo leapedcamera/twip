@@ -1,13 +1,18 @@
 # Control
-xDes: [0, 0, 3.141592653589793, 0]
+xDes: [4, 0, 3.141592653589793, 0]
 
 # PID
-Kp: 1000
-Ki: 1
-Kd: 1
+Kp: 150
+Ki: 3
+Kd: 50
 
 # Pole Placement
 poles: [-1, -2, -3, -4]
+
+# LQR
+R: .01
+Q: [100, 5, 1, 1]
+
 
 # Dynamics
 l: 2
