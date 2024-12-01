@@ -1,5 +1,5 @@
 # twip
-Simulation for two-wheeled inverted pendulum
+Simulation for two-wheeled* inverted pendulum
 
 ## Environment
 Simple sim is only dependent on matplotlib, scipy, yaml, and numpy.   
@@ -12,3 +12,5 @@ The control algorithm of choice is modified by changing line 36 of sim.py to ass
 
 ## Running 
 Run `sim.py` from the src folder. A plot showing the state space and an animation will appear
+
+*Currently only 2D, so one wheel
